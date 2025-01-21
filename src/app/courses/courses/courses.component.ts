@@ -21,11 +21,12 @@ export class CoursesComponent implements OnInit {
   constructor(private coursesService: CoursesService) {
     // this.courses = [ ]; //ou ela pode ser inicializada desta maneira.
     //this.coursesService = new CoursesService();
-    this.courses = this.coursesService.findAll();
+    this.courses = this.coursesService.list();
   }
 
   ngOnInit(): void {
     //em versões anteriores, tbm poderia ser inicializado aqui dentro do OnInit, porem aqui ou dentro do contrutor
     // nao faz tanta diferença
+    // this.courses = this.coursesService.list();
   }
 }
