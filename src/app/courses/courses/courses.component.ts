@@ -2,7 +2,8 @@ import { CoursesService } from './../services/courses.service';
 import { Component, OnInit } from '@angular/core';
 
 import { Course } from '../model/course';
-import { Observable } from 'rxjs';
+import {catchError, Observable, of} from 'rxjs';
+import {error} from "@angular/compiler-cli/src/transformers/util";
 
 @Component({
   selector: 'app-courses',
@@ -21,7 +22,12 @@ export class CoursesComponent implements OnInit {
   constructor(private coursesService: CoursesService) {
     // this.courses = [ ]; //ou ela pode ser inicializada desta maneira.
     //this.coursesService = new CoursesService();
-    this.courses$ = this.coursesService.list();
+    this.courses$ = this.coursesService.list()
+      .pipe(catchError(error => {
+        console.log(error);
+        return of([])
+        })
+      );
   }
 
   ngOnInit(): void {
