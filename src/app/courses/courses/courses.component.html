@@ -23,6 +23,25 @@
           </td>
         </ng-container>
 
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+<!--     mat-header-cell-> serve para configurar exatamente como a gente quer customizar a nossa coluna  -->
+         <mat-header-cell *matHeaderCellDef>Ação
+
+         </mat-header-cell>
+          <mat-cell *matCellDef="let curso">
+            <button mat-icon-button aria-label="Adicionar Curso" (click)="adicionarCurso()">
+              <mat-icon>add</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="Editar Curso">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button aria-label="Remover Curso" >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-cell>
+        </ng-container>
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
