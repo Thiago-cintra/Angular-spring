@@ -6,7 +6,7 @@ import {catchError, Observable, of} from 'rxjs';
 import {error} from "@angular/compiler-cli/src/transformers/util";
 import {MatDialog} from "@angular/material/dialog";
 import {ErrorDialogComponent} from "../../shared/componentes/error-dialog/error-dialog.component";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-courses',
@@ -25,7 +25,8 @@ export class CoursesComponent implements OnInit {
   constructor(
     private coursesService: CoursesService,
     public dialog: MatDialog,
-    private router:Router
+    private router:Router,
+    private route: ActivatedRoute,
     ) {
     // this.courses = [ ]; //ou ela pode ser inicializada desta maneira.
     //this.coursesService = new CoursesService();
@@ -50,7 +51,8 @@ export class CoursesComponent implements OnInit {
   }
 
   adicionarCurso(){
-    this.router.navigate(['/courses/new']);
+    //RelativeTo -> serve para fazer o roteamento dentro do mesmo dominio, neste caso, é como se estivesse colocando o course/new
+    this.router.navigate(['new'], {relativeTo: this.route});
   }
 
 }
